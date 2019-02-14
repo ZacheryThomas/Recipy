@@ -2,14 +2,10 @@
 
 import requests
 import re
-test_query = "https://www.google.com/search?q=recipe+beef+onion+pizza+dough"
+test_query = "https://www.google.com/search?q=recipe+beef+onion+pizza+dough&btnI"
+"Referer: http://www.google.com/"
 
-r = requests.get(test_query)
+headers = {"Referer": "http://www.google.com/"}
+r = requests.get(test_query, headers=headers)
 
-debug = "http://www.a.com/"
-
-results = re.finditer("(https?:\/\/(?!(.*google.*)).*?)([\"<]).", r.text)
-
-for result in results:
-    print(result.group(1))
-    print(" ")
+print(r.text)
