@@ -1,0 +1,17 @@
+# Based off of
+# https://github.com/deviantony/docker-elk/blob/master/docker-compose.yml
+
+version: '3'
+
+services:
+  recipy:
+    build: ../
+    volumes:
+      - ../:/recipy
+    ports:
+      - "5000:5000"
+    command: >
+      sh -c """while true; do
+        python server.py
+      done
+      """
