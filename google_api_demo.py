@@ -8,6 +8,8 @@ r = requests.get(test_query)
 
 debug = "http://www.a.com/"
 
-result = re.search("(https?:\/\/(?!(www\..*google\.com\/?)).*?)(\")", r.text)
+results = re.finditer("(https?:\/\/(?!(.*google.*)).*?)([\"<]).", r.text)
 
-print(result.group(1))
+for result in results:
+    print(result.group(1))
+    print(" ")
